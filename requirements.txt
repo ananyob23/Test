@@ -1,2 +1,1 @@
-# requirements.txt
 pyodbc==4.0.39
