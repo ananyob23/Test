@@ -6,6 +6,7 @@ username = 'Demo'
 password = 'admin'
 # Initialize connection.
 # Uses st.cache_resource to only run once.
+cn = 0
 @st.cache_resource
 cn = f'DRIVER={SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password'
 cnxn = pyodbc.connect(cn) 
