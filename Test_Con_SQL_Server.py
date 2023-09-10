@@ -1,9 +1,7 @@
 import streamlit as st
 import pyodbc
 
-# Initialize connection.
-# Uses st.cache_resource to only run once.
-@st.cache_resource
+
 cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER='+st.secrets["server"]+';DATABASE='+st.secrets["database"]+';UID='+st.secrets["username"]+';PWD='+ st.secrets["password"])
 cursor = cnxn.cursor()
 
