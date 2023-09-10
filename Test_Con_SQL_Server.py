@@ -1,23 +1,29 @@
 import streamlit as st
+import pyodbc
 
-server   = 'ANKANALYTICS-AN\SQLEXPRESS' 
-database = 'Test'
-username = 'Demo'
-password = 'admin'
 # Initialize connection.
 # Uses st.cache_resource to only run once.
-cn = 0
 @st.cache_resource
-cn = f'DRIVER={SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password'
-cnxn = pyodbc.connect(cn) 
-cursor = cnxn.cursor()
+def init_connection():
+    return pyodbc.connect(
+        "DRIVER={ODBC Driver 17 for SQL Server};SERVER="
+        + st.secrets["server"]
+        + ";DATABASE="
+        + st.secrets["database"]
+        + ";UID="
+        + st.secrets["username"]
+        + ";PWD="
+        + st.secrets["password"]
+    )
+
+conn = init_connection()
 
 # Perform query.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
-@st.cache_data(ttl=600)
 def run_query(query):
-        cursor.execute(query)
-        return cursor.fetchall()
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
 
 rows = run_query("SELECT * from mytable;")
 
