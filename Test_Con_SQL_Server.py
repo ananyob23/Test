@@ -3,8 +3,7 @@ import pyodbc
 # Initialize connection.
 
 conn = pyodbc.connect(
-        "DRIVER={ODBC Driver 17 for SQL Server};SERVER="
-        + st.secrets["server"]
+        "DRIVER={ODBC Driver 17 for SQL Server};SERVER=127.0.0.1,1433"
         + ";DATABASE=Test"
         + ";UID=Demo"
         + ";PWD=admin"
