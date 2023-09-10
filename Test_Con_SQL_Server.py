@@ -2,7 +2,7 @@ import streamlit as st
 import pyodbc
 
 conn = pyodbc.connect(
-        "DRIVER={ODBC Driver 17 for SQL Server};SERVER="
+        "DRIVER={ODBC Driver 13 for SQL Server};SERVER="
         + st.secrets["server"]
         + ";DATABASE="
         + st.secrets["database"]
