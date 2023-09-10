@@ -1,5 +1,5 @@
 import streamlit as st
-
+import sqlalchemy
 conn = st.experimental_connection("sql_connection", type="streamlit.connections.SQLConnection")
 def run_query(query):
     with conn.cursor() as cur:
