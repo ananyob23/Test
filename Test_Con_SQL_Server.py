@@ -1,7 +1,7 @@
 import streamlit as st
 
-def init_connection():
-    return pyodbc.connect(
+
+conn = pyodbc.connect(
         "DRIVER={ODBC Driver 17 for SQL Server};SERVER="
         + st.secrets["server"]
         + ";DATABASE="
@@ -11,8 +11,6 @@ def init_connection():
         + ";PWD="
         + st.secrets["password"]
     )
-
-conn = init_connection()
 def run_query(query):
     with conn.cursor() as cur:
         cur.execute(query)
